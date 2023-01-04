@@ -1,8 +1,10 @@
 //"uwu" Text Converter
+//aka the "uwu" convewtew
+//aka the "uwu"fier
 //By Renzo Pereyra
 
-//A fun little exercise in converting characters of a file
-//and saving them in a new file
+//A fun little exercise in converting characters of a file...
+//and saving them in a new file.
 
 #include<iostream>
 #include<fstream>
@@ -26,6 +28,7 @@ void setIOFiles(string &input, string &output, string txtExtension)
 		cout << "Input file set without extension." << endl;
 		cout << "Adding extension to input file." << endl;
 		input = input + ".txt";
+		cout << endl;
 	}
 
 	cout << "Enter filename you wish to save: ";
@@ -40,6 +43,7 @@ void setIOFiles(string &input, string &output, string txtExtension)
 		cout << "Output file set without extension." << endl;
 		cout << "Adding extension to output file." << endl;
 		output = output + ".txt";
+		cout << endl;
 	}
 }
 
@@ -77,32 +81,45 @@ int main()
 		out << "============================" << endl;
 		out << endl;
 
+		//prints original text file
 		while (!in.eof())
 		{
 			getline(in, textString);
-			cout << textString << endl; //prints to console
 			out << textString << endl; //prints to file
 		}
+
 		in.clear(); //clears file's "end-of-file" flag
 		in.seekg(0L, ios::beg); //sets read position to beginning of file
+		
+		//prints UWU version of text file
 		while (!in.eof())
 		{
 			getline(in, textString);
-			string line[textString.length()];
-			
 			for(size_t i=0; i<textString.length(); i++)
 			{
-				line[i] = textString[i];
-				cout << line[i] << endl;
-				if (line[i] == "u")
+				if (textString[i] == 'u')
 				{
-					cout << "FOUND AN UWU LETTER" << endl;
+					i++;
+					//flags have been commented out
+					//cout << "FOUND AN UWU CANDIDATE!" << endl;
+					textString.insert(i, "wu"); //changes each "u" to "uw"
+					i++;
+				}
+				else if (textString[i] == 'l')
+				{
+					//flags have been commented out
+					//cout << "FOUND AN L CANDIDATE!" << endl;
+					textString[i] = 'w'; //replace "l" with "w"
+				}
+				else if (textString[i] == 'r')
+				{
+					//flags have been commented out
+					//cout << "FOUND AN R CANDIDATE!" << endl;
+					textString[i] = 'w'; //replace "r" with "w"
 				}
 			}
+			cout << textString << endl;
 		}
-
-		//present UWU-fied file
-		//...
 	}
 	return 0;
 }
