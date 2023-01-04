@@ -13,7 +13,7 @@ using namespace std;
 void setIOFiles(string &input, string &output, string txtExtension)
 {
 	//gets filename from user
-	cout << "Enter file you wish to open: ";
+	cout << "Enter text file you wish to open: ";
 	cin >> input;
 	
 	//checks if ".txt" is included in string, else appends it to end of string
@@ -21,27 +21,33 @@ void setIOFiles(string &input, string &output, string txtExtension)
 	{
 		//does .txt exist here? YES
 		cout << "Successfully read input file!" << endl;
+		cout << endl;
 	}
 	else 
 	{
 		//does .txt exist here? NO
-		cout << "Input file set without extension." << endl;
-		cout << "Adding extension to input file." << endl;
+		cout << "NOTE: Input file set without extension!" << endl;
+		cout << "Adding extension to input file..." << endl;
 		input = input + ".txt";
 		cout << endl;
 	}
 
-	cout << "Enter filename you wish to save: ";
+	//sets filename by user
+	cout << "Enter filename you wish to save as: ";
 	cin >> output;
+
 	//checks if ".txt" is included in string, else appends it to end of string
 	if (output.find(txtExtension) != output.npos)
 	{
+		//does .txt exist here? YES
 		cout << "Successfully read output file!" << endl;
+		cout << endl;
 	}
 	else 
 	{
-		cout << "Output file set without extension." << endl;
-		cout << "Adding extension to output file." << endl;
+		//does .txt exist here? NO
+		cout << "NOTE: Output file set without extension!" << endl;
+		cout << "Adding extension to output file..." << endl;
 		output = output + ".txt";
 		cout << endl;
 	}
@@ -56,11 +62,19 @@ int main()
 	string textString;
 	string txtExtension = ".txt";
 
+	cout << "============================" << endl;
+	cout << "Welcome to the UWU Converter!" << endl;
+	cout << "----------------------------" << endl;
+	cout << "A program by Renzo Pereyra" << endl;
+	cout << "============================" << endl;
+	cout << endl;
+
 	setIOFiles(inputName, outputName, txtExtension);
 
 	//flag to see if values carry over from "void" function
-	cout << "New value of input is: " << inputName << endl;
-	cout << "New value of output is: " << outputName << endl;
+	cout << "Your input file is called: " << inputName << endl;
+	cout << "Your output file is called: " << outputName << endl;
+	cout << endl;
 
 	//open the file
 	in.open(inputName.c_str());
@@ -73,6 +87,8 @@ int main()
 	}
 	else if (in.is_open())
 	{
+		cout << "Converting..." << endl; 
+
 		out << "============================" << endl;
 		out << "Welcome to the UWU Converter!" << endl;
 		out << "----------------------------" << endl;
@@ -91,6 +107,12 @@ int main()
 		in.clear(); //clears file's "end-of-file" flag
 		in.seekg(0L, ios::beg); //sets read position to beginning of file
 		
+		out << endl;
+		out << "============================" << endl;
+		out << "Below is your output file: " << endl;
+		out << "============================" << endl;
+		out << endl;
+
 		//prints UWU version of text file
 		while (!in.eof())
 		{
@@ -118,8 +140,17 @@ int main()
 					textString[i] = 'w'; //replace "r" with "w"
 				}
 			}
-			cout << textString << endl;
+			out << textString << endl;
 		}
 	}
+	cout << "Done!" << endl;
+	cout << endl;
+	cout << "================================" << endl;
+	cout << "Thank you for being poggers." << endl;
+	cout << "Enjoy your new file!" << endl;
+	cout << "================================" << endl;
+	cout << endl;
+
+	system("pause");
 	return 0;
 }
